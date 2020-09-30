@@ -11,6 +11,33 @@ var block3El = $("#3pm-tasks");
 var block4El = $("#4pm-tasks");
 var block5El = $("#5pm-tasks");
 
+$(".saveBtn").on("click", function() {
+    var value = $(this).siblings(".description").val();
+    var time = $(this).parent().attr("id");
+    console.log(value);
+    console.log(time);
+    localStorage.setItem(time, value);
+})
+
+function hourUpdater() {
+    currentHour = moment.hours();
+    console.log(currentHour);
+    $(".time-block").each(function() {
+        var rowHour = parseInt($(this).attr("id"));
+        console.log(rowHour);
+
+        if (rowHour > currentHour){
+            $(this).addClass("future");
+        } else if (rowHour == currentHour) {
+            $(this).addClass("present");
+        } else {
+            $(this).addClass("past");
+        }
+    })
+}
+
+
+
 currentDayEl.text(moment.format('MMMM DD YYYY'));
 
-// if id of text area is 
+hourUpdater();

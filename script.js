@@ -16,6 +16,8 @@ function hourUpdater() { // Color codes the hour blocks based on if they're past
         var rowHour = parseInt($(this).attr("id"));
         console.log(rowHour);
 
+        currentHour = 11;
+
         if (rowHour > currentHour){
             $(this).addClass("future");
         } else if (rowHour == currentHour) {

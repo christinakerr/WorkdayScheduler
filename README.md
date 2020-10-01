@@ -21,4 +21,4 @@ This application leverages:
 * jQuery
 * Moment.js
 
-![Screenshot]()
+![Screenshot](screenshot.png)

@@ -1,17 +1,7 @@
 var currentDayEl = $("#currentDay");
 var moment = moment();
 
-var block9El = $("#9am-tasks");
-var block10El = $("#10am-tasks");
-var block11El = $("#11am-tasks");
-var block12El = $("#12pm-tasks");
-var block1El = $("#1pm-tasks");
-var block2El = $("#2pm-tasks");
-var block3El = $("#3pm-tasks");
-var block4El = $("#4pm-tasks");
-var block5El = $("#5pm-tasks");
-
-$(".saveBtn").on("click", function() {
+$(".saveBtn").on("click", function() { // Click the save button to save that hour's tasks
     var value = $(this).siblings(".description").val();
     var time = $(this).parent().attr("id");
     console.log(value);
@@ -19,8 +9,8 @@ $(".saveBtn").on("click", function() {
     localStorage.setItem(time, value);
 })
 
-function hourUpdater() {
-    currentHour = moment.hours();
+function hourUpdater() { // Color codes the hour blocks based on if they're past, current, or future
+    var currentHour = moment.hours();
     console.log(currentHour);
     $(".time-block").each(function() {
         var rowHour = parseInt($(this).attr("id"));
@@ -38,6 +28,22 @@ function hourUpdater() {
 
 
 
-currentDayEl.text(moment.format('MMMM DD YYYY'));
+currentDayEl.text(moment.format('MMMM DD YYYY')); // Displays current date at the top of the page
 
 hourUpdater();
+
+
+
+$(".time-block").each(function() { // Retrieves events from storage
+    var number = $(this).attr("id");
+    console.log(number);
+    var storedTodos = localStorage.getItem(number);
+    console.log(storedTodos);
+    var textDescription = $(this).children(".description");
+    console.log(textDescription);
+    
+
+    if (storedTodos != null) {
+        textDescription.val(storedTodos);
+    }
+})
